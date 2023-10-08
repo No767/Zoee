@@ -24,6 +24,27 @@ ruff = "^0.0.292"
 watchfiles = "^0.20.0"
 jishaku = "^2.5.1"
 
+[tool.isort]
+profile = 'black'
+
+[tool.pyright]
+include = ["bot/**"]
+exclude = [
+    "**/__pycache__", 
+    "**/.mypy_cache", 
+    "**/.dmpypy.json", 
+]
+reportMissingImports = true
+typeCheckingMode = "basic"
+reportUnnecessaryTypeIgnoreComment = "warning"
+
+[tool.bandit]
+skips = ["B311", "B101"]
+
+[tool.ruff]
+ignore = ["E501", "N999", "E402"]
+select = ["E", "F", "N", "ASYNC", "S", "ERA"]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

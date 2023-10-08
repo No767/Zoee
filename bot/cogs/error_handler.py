@@ -2,7 +2,6 @@ import traceback
 from typing import List
 
 import discord
-from zoeecore import Zoee
 from discord.app_commands import (
     AppCommandError,
     BotMissingPermissions,
@@ -12,6 +11,7 @@ from discord.app_commands import (
 from discord.ext import commands
 from discord.utils import utcnow
 from libs.utils import ErrorEmbed
+from zoeecore import Zoee
 
 
 class ErrorHandler(commands.Cog):

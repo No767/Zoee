@@ -1,14 +1,15 @@
-from discord.ext import commands
-from discord import app_commands
-from zoeecore import Zoee
-import psutil
-import discord
-import pygit2
-from libs.utils import Embed, human_timedelta
 import datetime
-from discord.utils import format_dt
 import itertools
 import platform
+
+import discord
+import psutil
+import pygit2
+from discord import app_commands
+from discord.ext import commands
+from discord.utils import format_dt
+from libs.utils import Embed, human_timedelta
+from zoeecore import Zoee
 
 
 # A cog houses a category of commands
@@ -93,6 +94,7 @@ class Meta(commands.Cog):
         """Displays the current build version"""
         version_message = f"Version: {self.bot.version}"
         await interaction.response.send_message(version_message)
+
 
 async def setup(bot: Zoee) -> None:
     await bot.add_cog(Meta(bot))

@@ -1,22 +1,32 @@
-from discord.ext import commands
-import discord
-from aiohttp import ClientSession
-import asyncpg
-from pathlib import Path
 import logging
 import signal
+from pathlib import Path
+
+import asyncpg
+import discord
+from aiohttp import ClientSession
 from cogs import EXTENSIONS, VERSION
-from discord import app_commands
+from discord.ext import commands
+
 _fsw = True
 try:
     from watchfiles import awatch
 except ImportError:
     _fsw = False
 
-        
+
 class Zoee(commands.Bot):
     """Zoeeeee"""
-    def __init__(self, intents: discord.Intents, session: ClientSession, pool: asyncpg.Pool,dev_mode: bool = False, *args, **kwargs):
+
+    def __init__(
+        self,
+        intents: discord.Intents,
+        session: ClientSession,
+        pool: asyncpg.Pool,
+        dev_mode: bool = False,
+        *args,
+        **kwargs,
+    ):
         super().__init__(
             activity=discord.Activity(
                 type=discord.ActivityType.watching, name="for some eggs to hatch!"
@@ -25,15 +35,16 @@ class Zoee(commands.Bot):
             help_command=None,
             intents=intents,
             *args,
-            **kwargs
+            **kwargs,
         )
         self.logger = logging.getLogger("zoee")
         self.session = session
         self.pool = pool
         self.version = str(VERSION)
         self._dev_mode = dev_mode
-        
+
         # Pulled from Kumiko and Catherine-Chan
+
     async def fs_watcher(self) -> None:
         cogs_path = Path(__file__).parent.joinpath("cogs")
         async for changes in awatch(cogs_path):
@@ -42,7 +53,7 @@ class Zoee(commands.Bot):
                 reload_file = Path(changes_list[1])
                 self.logger.info(f"Reloading extension: {reload_file.name[:-3]}")
                 await self.reload_extension(f"cogs.{reload_file.name[:-3]}")
-        
+
     async def setup_hook(self) -> None:
         def stop():
             self.loop.create_task(self.close())
@@ -57,6 +68,7 @@ class Zoee(commands.Bot):
             self.logger.info("Dev mode is enabled. Loading Jishaku and FSWatcher")
             await self.load_extension("jishaku")
             self.loop.create_task(self.fs_watcher())
+
     async def on_ready(self):
         if not hasattr(self, "uptime"):
             self.uptime = discord.utils.utcnow()

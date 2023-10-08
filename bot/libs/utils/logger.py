@@ -5,7 +5,6 @@ from typing import Optional, Type, TypeVar
 
 import discord
 
-
 BE = TypeVar("BE", bound=BaseException)
 
 

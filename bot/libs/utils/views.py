@@ -2,6 +2,7 @@ import discord
 
 NO_CONTROL_MSG = "This menu cannot be controlled by you, sorry!"
 
+
 class ZoeeView(discord.ui.View):
     def __init__(self, interaction: discord.Interaction):
         super().__init__()

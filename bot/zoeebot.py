@@ -6,8 +6,8 @@ import asyncpg
 import discord
 from aiohttp import ClientSession
 from dotenv import load_dotenv
+from libs.utils import ZoeeLogger
 from zoeecore import Zoee
-from cogs.utils import ZoeeLogger
 
 # Only used for Windows development
 if os.name == "nt":
@@ -31,12 +31,16 @@ POSTGRES_URI = os.environ["POSTGRES_URI"]
 intents = discord.Intents.default()
 intents.message_content = True
 
+
 async def main() -> None:
     async with ClientSession() as session, asyncpg.create_pool(
         dsn=POSTGRES_URI, min_size=25, max_size=25, command_timeout=60
     ) as pool:
-        async with Zoee(intents=intents, session=session, pool=pool, dev_mode=DEV_MODE) as bot:
+        async with Zoee(
+            intents=intents, session=session, pool=pool, dev_mode=DEV_MODE
+        ) as bot:
             await bot.start(TOKEN)
+
 
 def launch() -> None:
     with ZoeeLogger():
