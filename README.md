@@ -21,20 +21,20 @@ So that's why this template manually handles it via an sync command (spefically,
 <details>
     <summary>If you want to know why auto syncing is bad</summary>
 
-        Auto-syncing, which is the practice of using `bot.tree.sync()` in a `setup_hook`,
-        is extremely bad practice. Why? Even single time you sync, you send an API request
-        to Discord. Within the dpy examples, it is done so in order to provide the slash 
-        commands in the ui for the user. It's done so folks starting out won't complain
-        about "why is my slash commands not showing up?" (and also btw the examples are
-        really good for basic slash command examples).
+Auto-syncing, which is the practice of using `bot.tree.sync()` in a `setup_hook`,
+is extremely bad practice. Why? Even single time you sync, you send an API request
+to Discord. Within the dpy examples, it is done so in order to provide the slash 
+commands in the ui for the user. It's done so folks starting out won't complain
+about "why is my slash commands not showing up?" (and also btw the examples are
+really good for basic slash command examples).
 
-    Now the implications of doing so is quite huge. There are two main points: 
+Now the implications of doing so is quite huge. There are two main points: 
 
-    1. **Auto-syncing incurs heavy ratelimits (429 errors).** Now usually for folks starting off,       they will Ctrl+C their bot to reload extensions, and now that can lead to ratelimits.        Getting ratelimited isn't a good thing so it's best to do what you can do to prevent it from happening (dpy pretty much handles it for you). 
+1. **Auto-syncing incurs heavy ratelimits (429 errors).** Now usually for folks starting off,       they will Ctrl+C their bot to reload extensions, and now that can lead to ratelimits.        Getting ratelimited isn't a good thing so it's best to do what you can do to prevent it from happening (dpy pretty much handles it for you). 
 
-    2. **Lack of control.**. Say I have my bot auto syncing, and then oops I accidently synced both globally and to my guild, resulting in duplicate commands. Now I want to get rid of them, but I basically can't because all of the syncing is done automatically. This is what auto-syncing leads to. Now let's say I added Umbra's sync command, and all I need to do to fix this is to run `z>sync ^` and boom, the duplicate commands are removed. Point is, there is an heavy opportunity cost that you have to take. Either auto sync + gain convenience or lose control over how you sync. The second option seems less risker in general.
+2. **Lack of control.**. Say I have my bot auto syncing, and then oops I accidently synced both globally and to my guild, resulting in duplicate commands. Now I want to get rid of them, but I basically can't because all of the syncing is done automatically. This is what auto-syncing leads to. Now let's say I added Umbra's sync command, and all I need to do to fix this is to run `z>sync ^` and boom, the duplicate commands are removed. Point is, there is an heavy opportunity cost that you have to take. Either auto sync + gain convenience or lose control over how you sync. The second option seems less risker in general.
 
-    Now you don't need to manually sync everysingle time you change your code, but the tdlr is to do it when you change or added command + option names and/or descriptions, change or added the type of the param, and when you add/modify permissions. That's it.
+Now you don't need to manually sync everysingle time you change your code, but the tdlr is to do it when you change or added command + option names and/or descriptions, change or added the type of the param, and when you add/modify permissions. That's it.
 
 ~ Noelle
 </details>
