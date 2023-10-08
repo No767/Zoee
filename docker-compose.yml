@@ -1,0 +1,15 @@
+version: "3.9"
+name: "zoee-dev"
+services:
+  postgres:
+    container_name: Zoee-Postgres
+    image: postgres:15 
+    env_file:
+      - bot/.env
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres_volume:
