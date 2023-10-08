@@ -30,11 +30,11 @@ really good for basic slash command examples).
 
 Now the implications of doing so is quite huge. There are two main points: 
 
-1. **Auto-syncing incurs heavy ratelimits (429 errors).** Now usually for folks starting off,       they will Ctrl+C their bot to reload extensions, and now that can lead to ratelimits.        Getting ratelimited isn't a good thing so it's best to do what you can do to prevent it from happening (dpy pretty much handles it for you). 
+1. **Auto-syncing incurs heavy ratelimits (429 errors).** Now usually for folks starting off,they will Ctrl+C their bot to reload extensions, and now that can lead to ratelimits. Do it too much and **expect to get IP banned by Discord**. Getting ratelimited isn't a good thing soit's best to do what you can do to prevent it from happening (dpy pretty much handles it for you). 
 
-2. **Lack of control.**. Say I have my bot auto syncing, and then oops I accidently synced both globally and to my guild, resulting in duplicate commands. Now I want to get rid of them, but I basically can't because all of the syncing is done automatically. This is what auto-syncing leads to. Now let's say I added Umbra's sync command, and all I need to do to fix this is to run `z>sync ^` and boom, the duplicate commands are removed. Point is, there is an heavy opportunity cost that you have to take. Either auto sync + gain convenience or lose control over how you sync. The second option seems less risker in general.
+2. **Lack of control.**. Say I have my bot auto syncing, and then oops I accidently synced both globally and to my guild, resulting in duplicate commands. Now I want to get rid of them, but I basically can't because all of the syncing is done automatically. This is what auto-syncing leads to. Now let's say I added Umbra's sync command, and all I need to do to fix this is to run `z>sync ^` and boom, the duplicate commands are removed. Point is, there is an heavyopportunity cost that you have to take. Either auto sync + gain convenience or lose control over how you sync. The second option seems less risker in general.
 
-Now you don't need to manually sync everysingle time you change your code, but the tdlr is to do it when you change or added command + option names and/or descriptions, change or added the type of the param, and when you add/modify permissions. That's it.
+Now you don't need to manually sync everysingle time you change your code, but the tdlr is todo it when you change or added command + option names and/or descriptions, change or added the type of the param, and when you add/modify permissions. (You can find more details about this in the [app command guide](https://github.com/Rapptz/discord.py/pull/9557) being written by Nanika, and the finer details can be also found in `?tag whensync` in the [offical discord.py server](https://discord.com/invite/r3sSKJJ). That's it.
 
 ~ Noelle
 </details>
